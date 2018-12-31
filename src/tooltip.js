@@ -4,6 +4,7 @@
  */
 class Tooltip extends HTMLElement {
   constructor() {
+    // always call super() for extending classes
     super()
     // an undefined property to hold
     // the actual tooltip on hover
@@ -12,11 +13,14 @@ class Tooltip extends HTMLElement {
     // as html attribute (set in connectedCallback).
     // Setting default value as well.
     this._tooltipText = 'Dummy tooltip text'
+    // initialize the shadow dom and allow
+    // access to it from outside (the mode: open prop)
+    this.attachShadow({ mode: 'open' })
   }
 
   /**
    * ----------------------------------------
-   * LIFECYCLE NOTE
+   * LIFECYCLE NOTE: connectedCallback
    * 
    * You cannot attach a custom element in the constructor
    * (i.e.: which would be the define part of the lifecycle)
@@ -27,16 +31,23 @@ class Tooltip extends HTMLElement {
    * ----------------------------------------
    */
   connectedCallback() {
+    // set the text of the element if it exists
     if (this.hasAttribute('text')) {
       this._tooltipText = this.getAttribute('text')
     }
+    // create the element and it's initial view text
     const tooltipIcon = document.createElement('span')
     tooltipIcon.textContent = ' (?) '
+    // mouse events...
     // must bind this to refer to the class instead of
     // the _showTooltip method
     tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this))
     tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this))
-    this.appendChild(tooltipIcon)
+    // add it to the shadow dom root
+    this.shadowRoot.appendChild(tooltipIcon)
+    // tooltipContainer parent must be relative
+    // in order for the absolute positioning to work
+    this.style.position = 'relative'
   }
 
   /**
@@ -45,6 +56,7 @@ class Tooltip extends HTMLElement {
    * make it private
    */
   _showTooltip() {
+    // create the element and set the text
     this._tooltipContainer = document.createElement('div')
     this._tooltipContainer.textContent = this._tooltipText
 
@@ -55,13 +67,12 @@ class Tooltip extends HTMLElement {
     this._tooltipContainer.style.zIndex = '10'
     this._tooltipContainer.style.padding = '0.25rem 0.5rem'
 
-    this.appendChild(this._tooltipContainer)
-    // tooltipContainer parent must be relative
-    // in order for the absolute positioning to work
-    this.style.position = 'relative'
+    // add the tooltipContainer to the doc
+    this.shadowRoot.appendChild(this._tooltipContainer)
   }
+
   _hideTooltip() {
-    this.removeChild(this._tooltipContainer)
+    this.shadowRoot.removeChild(this._tooltipContainer)
   }
 }
 
