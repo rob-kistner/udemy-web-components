@@ -5,6 +5,13 @@
 class Tooltip extends HTMLElement {
   constructor() {
     super()
+    // an undefined property to hold
+    // the actual tooltip on hover
+    this._tooltipContainer
+    // Text for tooltip, passed from caller
+    // as html attribute (set in connectedCallback).
+    // Setting default value as well.
+    this._tooltipText = 'Dummy tooltip text'
   }
 
   /**
@@ -18,9 +25,30 @@ class Tooltip extends HTMLElement {
    * which needs to be called exactly as below
    */
   connectedCallback() {
+    if (this.hasAttribute('text')) {
+      this._tooltipText = this.getAttribute('text')
+    }
     const tooltipIcon = document.createElement('span')
-    tooltipIcon.textContent = ' (?)'
+    tooltipIcon.textContent = ' (?) '
+    // must bind this to refer to the class instead of
+    // the _showTooltip method
+    tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this))
+    tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this))
     this.appendChild(tooltipIcon)
+  }
+
+  /**
+   * _ before the method name is just an unofficial
+   * convention for private methods, it actually doesn't
+   * make it private
+   */
+  _showTooltip() {
+    this._tooltipContainer = document.createElement('div')
+    this._tooltipContainer.textContent = this._tooltipText
+    this.appendChild(this._tooltipContainer)
+  }
+  _hideTooltip() {
+    this.removeChild(this._tooltipContainer)
   }
 }
 
