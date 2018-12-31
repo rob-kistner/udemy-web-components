@@ -16,6 +16,9 @@ class Tooltip extends HTMLElement {
     // initialize the shadow dom and allow
     // access to it from outside (the mode: open prop)
     this.attachShadow({ mode: 'open' })
+    // acccess template in html file
+    const template = document.querySelector('#tooltip-template')
+    this.shadowRoot.appendChild(template.content.cloneNode(true))
   }
 
   /**
@@ -35,9 +38,7 @@ class Tooltip extends HTMLElement {
     if (this.hasAttribute('text')) {
       this._tooltipText = this.getAttribute('text')
     }
-    // create the element and it's initial view text
-    const tooltipIcon = document.createElement('span')
-    tooltipIcon.textContent = ' (?) '
+    const tooltipIcon = this.shadowRoot.querySelector('span')
     // mouse events...
     // must bind this to refer to the class instead of
     // the _showTooltip method

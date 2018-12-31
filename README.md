@@ -12,3 +12,5 @@ When you add elements to the ShadowDOM, they will disappear from the regular DOM
 ```
 <uc-tooltip>Web Components</uc-tooltip>
 ```
+
+Also, within the ShadowDOM, document styling does not affect the specific component. i.e.: setting an orange border around all `div`s in a global stylesheet will not affect the ShadowDOM created `div`.
