@@ -1,0 +1,7 @@
+{
+  "name": "web-components-stencil-js",
+  "description": "Web Components & Stencil JS: Build Custom HTML Elements. Udemy course by Max Schwarzmüller.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}
