@@ -15,14 +15,16 @@ class Tooltip extends HTMLElement {
   }
 
   /**
+   * ----------------------------------------
    * LIFECYCLE NOTE
    * 
    * You cannot attach a custom element in the constructor
    * (i.e.: which would be the define part of the lifecycle)
-   * since it won't exist in the DOM yet
+   * since it won't exist in the DOM yet.
    * 
    * You instead define it in connectedCallback,
-   * which needs to be called exactly as below
+   * which needs to be called exactly as below.
+   * ----------------------------------------
    */
   connectedCallback() {
     if (this.hasAttribute('text')) {
@@ -45,7 +47,18 @@ class Tooltip extends HTMLElement {
   _showTooltip() {
     this._tooltipContainer = document.createElement('div')
     this._tooltipContainer.textContent = this._tooltipText
+
+    // styling
+    this._tooltipContainer.style.backgroundColor = 'black'
+    this._tooltipContainer.style.color = 'white'
+    this._tooltipContainer.style.position = 'absolute'
+    this._tooltipContainer.style.zIndex = '10'
+    this._tooltipContainer.style.padding = '0.25rem 0.5rem'
+
     this.appendChild(this._tooltipContainer)
+    // tooltipContainer parent must be relative
+    // in order for the absolute positioning to work
+    this.style.position = 'relative'
   }
   _hideTooltip() {
     this.removeChild(this._tooltipContainer)
