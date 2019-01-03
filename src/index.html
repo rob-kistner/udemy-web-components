@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Web Components & StencilJS</title>
   <script src="./tooltip.js"></script>
+  <script src="./confirm-link.js"></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -28,6 +29,15 @@
     </uc-tooltip> are awesome!
   </p>
   <uc-tooltip></uc-tooltip>
+
+  <p>
+    <!--
+      Components based on built-in elements 
+      require the is="" parameter in the html 
+      with the component name
+    -->
+    <a is="uc-confirm-link" href="https://www.google.com">Google</a>
+  </p>
 
 </body>
 </html>
