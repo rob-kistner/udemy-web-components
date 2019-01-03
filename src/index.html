@@ -11,11 +11,17 @@
 <body>
   <!-- template for ShadowDOM use-->
   <template id="tooltip-template">
-    <span> (?) </span>
+    <slot>SLOT DEFAULT</slot>
+    <span>(?)</span>
   </template>
 
-  <p><uc-tooltip text="Web Components is a set of standards">Web Components</uc-tooltip> are awesome!</p>
-  <uc-tooltip>Here we go</uc-tooltip>
+  <p>
+    <uc-tooltip 
+      text="Web Components is a set of standards">
+      Web Components
+    </uc-tooltip> are awesome!
+  </p>
+  <uc-tooltip></uc-tooltip>
 
 </body>
 </html>
