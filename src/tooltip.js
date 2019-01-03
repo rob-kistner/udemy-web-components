@@ -16,9 +16,21 @@ class Tooltip extends HTMLElement {
     // initialize the shadow dom and allow
     // access to it from outside (the mode: open prop)
     this.attachShadow({ mode: 'open' })
-    // acccess template in html file
-    const template = document.querySelector('#tooltip-template')
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
+    // ------ to acccess template in html file
+    // const template = document.querySelector('#tooltip-template')
+    // this.shadowRoot.appendChild(template.content.cloneNode(true))
+    // ----- defining template in script
+
+    this.shadowRoot.innerHTML = `
+      <slot>DEFAULT SLOT TEXT</slot>
+      <span>(?)</span>
+    `
+    // ----- alternative formatting
+    // this.shadowRoot.innerHTML = `
+    //   <span>
+    //     <slot>DEFAULT SLOT TEXT</slot>
+    //   </span>
+    // `
   }
 
   /**

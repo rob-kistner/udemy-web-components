@@ -9,11 +9,17 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <!-- template for ShadowDOM use-->
-  <template id="tooltip-template">
-    <slot>SLOT DEFAULT</slot>
-    <span>(?)</span>
-  </template>
+  <!--
+    ----------------------------------------
+    Template for ShadowDOM use. If you don't define 
+    it in the script, you need to define it in html
+    
+    <template id="tooltip-template">
+      <slot>SLOT DEFAULT</slot>
+      <span>(?)</span>
+    </template>
+    ----------------------------------------
+  -->
 
   <p>
     <uc-tooltip 
