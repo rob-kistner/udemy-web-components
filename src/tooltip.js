@@ -22,6 +22,17 @@ class Tooltip extends HTMLElement {
     // ----- defining template in script
 
     this.shadowRoot.innerHTML = `
+      <style>
+        div {
+          background-color: #666;
+          color: white;
+          position: absolute;
+          z-index: 10;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+        }
+      </style>
+      
       <slot>DEFAULT SLOT TEXT</slot>
       <span>(?)</span>
     `
@@ -73,12 +84,14 @@ class Tooltip extends HTMLElement {
     this._tooltipContainer = document.createElement('div')
     this._tooltipContainer.textContent = this._tooltipText
 
-    // styling
-    this._tooltipContainer.style.backgroundColor = 'black'
-    this._tooltipContainer.style.color = 'white'
-    this._tooltipContainer.style.position = 'absolute'
-    this._tooltipContainer.style.zIndex = '10'
-    this._tooltipContainer.style.padding = '0.25rem 0.5rem'
+    // ----- Styling:
+    // ----- Gets used if it's not defined in js file
+    // ----- innerHTML above
+    // this._tooltipContainer.style.backgroundColor = 'black'
+    // this._tooltipContainer.style.color = 'white'
+    // this._tooltipContainer.style.position = 'absolute'
+    // this._tooltipContainer.style.zIndex = '10'
+    // this._tooltipContainer.style.padding = '0.25rem 0.5rem'
 
     // add the tooltipContainer to the doc
     this.shadowRoot.appendChild(this._tooltipContainer)
