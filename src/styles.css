@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+
+/* MICRO RESET & INITIAL STYLES */
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  max-width: 800px;
+  margin: 4rem auto 0;
+  padding: 0 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+}
+
+img,
+iframe {
+  border: 0;
+}
+
+/* course styles */
+
+div {
+  border: solid 1px orange;
+  border-radius: 4px;
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  color: #999;
+}
+
+.highlight {
+  background-color: coral;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 2px;
+}
