@@ -38,28 +38,3 @@ iframe {
 }
 
 /* course styles */
-
-div {
-  border: solid 1px orange;
-  border-radius: 4px;
-  margin: 1rem 0;
-  padding: 0.25rem 1rem;
-  color: #999;
-}
-
-.highlight {
-  /* background-color: coral;
-  color: white;
-  padding: 2px 5px;
-  border-radius: 2px; */
-}
-
-/* styles entire web component */
-uc-tooltip {
-  border: 1px solid blue;
-  padding: 0.5rem;
-}
-
-/* uc-tooltip.important {
-  background-color: green;
-} */

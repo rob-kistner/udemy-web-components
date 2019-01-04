@@ -34,18 +34,22 @@ class Tooltip extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         div {
+          font-weight: normal;
           background-color: #666;
           color: white;
           position: absolute;
-          bottom: 6px;
+          top: 1.5rem;
+          left: 0.75rem;
+          z-index: 10;
           padding: 0.25rem 0.5rem;
           border-radius: 4px;
+          box-shadow: 1px 1px 6px rgba(0,0,0,0.25);
         }
-        :host {
-          background-color: #ddd;
-        }
+        
         :host(.important) {
           background-color: var(--color-primary);
+          padding: 0.5rem 0.75rem;
+          border-radius: 4px;
         }
         :host-context(p) {
           font-weight: bold;
