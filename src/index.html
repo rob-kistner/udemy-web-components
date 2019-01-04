@@ -11,8 +11,17 @@
 </head>
 <body>
   
+  <!--
+    :host-context(p) {} affects this whole component
+    since it's contained in a paragraph (p) tag
+  -->
   <p>
+    <!--
+      Set styling on component only if class="important"
+      is set
+    -->
     <uc-tooltip 
+      class="important"
       text="Web Components is a set of standards">
       <span class="highlight">Web Components</span>
     </uc-tooltip> are awesome!

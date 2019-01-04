@@ -17,6 +17,19 @@ class Tooltip extends HTMLElement {
      * styling overrides shadow DOM for projected
      * or slotted content. !important will override
      * that, per standard css.
+     * 
+     * The :host style below allows you to style 
+     * the whole web component from within the js.
+     * As opposed to setting a style outside in the 
+     * light DOM by component name (i.e.: uc-tooltip {})
+     * 
+     * Conditional :host styling...
+     * :host(.important) {} will look for the
+     * .important class attached to all components
+     * and will style any that has the class
+     * 
+     * :host-context() {} will allow you to style
+     * content with certain surrounding conditions
      */
     this.shadowRoot.innerHTML = `
       <style>
@@ -24,21 +37,37 @@ class Tooltip extends HTMLElement {
           background-color: #666;
           color: white;
           position: absolute;
-          z-index: 10;
+          bottom: 6px;
           padding: 0.25rem 0.5rem;
           border-radius: 4px;
+        }
+        :host {
+          background-color: #ddd;
+        }
+        :host(.important) {
+          background-color: var(--color-primary);
+        }
+        :host-context(p) {
+          font-weight: bold;
         }
         .highlight {
           background: red;
         }
         ::slotted(.highlight) {
           border-bottom: 2px solid red;
-          background-color: red;
+        }
+        .icon {
+          background-color: black;
+          color: white;
+          padding: 0.125rem 0.5rem 0.25rem;
+          text-align: center;
+          border-radius: 6px;
+          cursor: pointer;
         }
       </style>
       
       <slot>DEFAULT SLOT TEXT</slot>
-      <span>(?)</span>
+      <span class="icon">?</span>
     `
   }
 

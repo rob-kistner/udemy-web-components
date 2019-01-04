@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
 
+html {
+  --color-primary: lightblue;
+}
+
 /* MICRO RESET & INITIAL STYLES */
 body {
   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -44,8 +48,18 @@ div {
 }
 
 .highlight {
-  background-color: coral;
+  /* background-color: coral;
   color: white;
   padding: 2px 5px;
-  border-radius: 2px;
+  border-radius: 2px; */
 }
+
+/* styles entire web component */
+uc-tooltip {
+  border: 1px solid blue;
+  padding: 0.5rem;
+}
+
+/* uc-tooltip.important {
+  background-color: green;
+} */
