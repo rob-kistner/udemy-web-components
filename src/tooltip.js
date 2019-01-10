@@ -3,6 +3,7 @@ class Tooltip extends HTMLElement {
   constructor() {
     super()
     this._tooltipContainer
+    this._tooltipIcon
     this._tooltipText = 'Dummy tooltip text'
 
     this.attachShadow({ mode: 'open' })
@@ -79,10 +80,10 @@ class Tooltip extends HTMLElement {
     if (this.hasAttribute('text')) {
       this._tooltipText = this.getAttribute('text')
     }
-    const tooltipIcon = 
+    this._tooltipIcon = 
       this.shadowRoot.querySelector('span')
 
-    tooltipIcon.addEventListener(
+    this._tooltipIcon.addEventListener(
       'mouseenter', 
       this._showTooltip.bind(this)
       )
@@ -91,9 +92,35 @@ class Tooltip extends HTMLElement {
       this._hideTooltip.bind(this)
       )
 
-    this.shadowRoot.appendChild(tooltipIcon)
+    this.shadowRoot.appendChild(this._tooltipIcon)
 
     this.style.position = 'relative'
+  }
+
+  // allows changing of values in attributes,
+  // as long as you make a getter for observed
+  // attributes (see below)
+  attributeChangedCallback(name, oldValue, newValue) {
+    // console.log(name, oldValue, newValue)
+    if (oldValue === newValue) {
+      return
+    }
+    if (name === "text") {
+      this._tooltipText = newValue
+    }
+  }
+
+  // return an array of all values you want
+  // to listen to for changes
+  static get observedAttributes() {
+    return ['text']
+  }
+ 
+  // runs when component is removed from 
+  // the dom
+  disconnectedCallback() {
+    this._tooltipIcon.removeEventListener('mouseenter', this._showTooltip)
+    this._tooltipIcon.removeEventListener('mouseleave', this._hideTooltip)
   }
 
   _showTooltip() {
